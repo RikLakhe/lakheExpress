@@ -8,8 +8,8 @@
     "build-babel": "babel -d ./build ./src -s",
     "build": "npm run clean && npm run build-babel",
     "server:build": "npm install && npm run build",
-    "server" : "nodemon src/index.js --exec babel-node --presets babel-preset-env",
-    "heroku-postbuild" : "NPM_CONFIG_PRODUCTION=false npm run server:build"
+    "server": "nodemon src/index.js --exec babel-node --presets babel-preset-env",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run server:build"
   },
   "dependencies": {
     "@sendgrid/mail": "^7.2.1",

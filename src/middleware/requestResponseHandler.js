@@ -9,7 +9,7 @@ export const requestOnlyHandler = (req, res, next) => {
         // no data is sent from front end send error
         if (!data) {
             res.locals.status = 401;
-            res.locals.encryptData = {
+            res.locals.data = {
                 status: 'FAIL',
                 message: 'Error request'
             };
@@ -98,18 +98,11 @@ export const requestGETWithTokenHandler = (req, res, next) => {
 };
 
 export const responseHandler = (req, res, next) => {
-    if (res.locals.status === 200 && res.locals.newAccessToken) {
-        return res
-            .status(res.locals.status)
-            .header('XSRF-TOKEN', res.locals.newAccessToken)
-            .json({
-                data: encrypt(res.locals.encryptData)
-            })
-    } else {
-        return res
-            .status(res.locals.status)
-            .json({
-                data: encrypt(res.locals.encryptData)
-            })
-    }
+    return res
+        .status(res.locals.status)
+        .json({
+            data: res.locals.data
+        })
 };
+
+
