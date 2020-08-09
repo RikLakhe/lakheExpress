@@ -17,10 +17,15 @@ export const errorHandler = error => {
             message = uniqueValueError(error);
             break;
         default:
-            message = 'Something went wrong';
+            if(!isEmpty(Object.keys(error.errors))){
+                message = error.errors[(Object.keys(error.errors)[0])].properties.message;
+            }else{
+                message = 'Something went wrong';
+            }
+
     }
 
-    return {type: 'error', message: message};
+    return message;
 };
 
 /**
@@ -48,3 +53,14 @@ export const getTime = () => {
     time = time.join('');
     return time;
 };
+
+/**
+ * Get OTP for verification
+ */
+export const generateOTP = () =>{
+    let code = ''
+    for(let i = 0;i<=5;i++){
+        code += Math.floor(Math.random() * 9);
+    }
+    return code
+}

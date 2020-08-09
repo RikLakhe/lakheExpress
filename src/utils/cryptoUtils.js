@@ -21,7 +21,7 @@ export const decrypt = (data) => {
     }
 };
 
-export const encryptPassword = (password) => {
+export const encryptpass = (password) => {
     if (!password) { return undefined }
     else {
         try {

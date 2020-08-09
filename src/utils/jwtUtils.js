@@ -6,9 +6,10 @@ const decodeToken = (Token) => {
 };
 
 export const freshToken = (formData, timeDuration) => {
+    console.log('ggg',AppConfig.jwtSecret)
     return jwt.sign(
         formData,
-        AppConfig.jwtSecret,
+        process.env.JWT_SECRET,
         {
             expiresIn: timeDuration,
         }
@@ -17,7 +18,7 @@ export const freshToken = (formData, timeDuration) => {
 
 export const isTokenExpired = (token) => {
     try {
-        const decoded = decodeToken(token, AppConfig.jwtSecret);
+        const decoded = decodeToken(token, process.env.JWT_SECRET);
         return decoded.exp < Date.now() / 1000;
     } catch (e) {
         return false;

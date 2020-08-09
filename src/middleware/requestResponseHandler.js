@@ -100,9 +100,7 @@ export const requestGETWithTokenHandler = (req, res, next) => {
 export const responseHandler = (req, res, next) => {
     return res
         .status(res.locals.status)
-        .json({
-            data: res.locals.data
-        })
+        .json(res.locals.data)
 };
 
 
