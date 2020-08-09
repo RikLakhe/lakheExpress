@@ -1,1 +1,1 @@
-web: node ./build/authController.js
+web: node ./build/index.js
