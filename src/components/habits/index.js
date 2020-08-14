@@ -22,12 +22,8 @@ router.get('/',
 router.post('/',
     init,
     (req, res, next) => {
-    console.log('here',req.body)
-
         let newHabit = req.body
-
-        const id = habitList.length + 1;
-        newHabit.id = id;
+        newHabit.id = habitList.length + 1;
         newHabit.count = 0;
 
         habitList.push(newHabit)
