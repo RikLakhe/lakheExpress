@@ -44,10 +44,26 @@ router.put('/',
     init,
     (req, res, next) => {
         let formData = req.body
-        coursesList.push(formData)
 
-        res.locals.status = 200;
-        res.locals.data = coursesList
+        if(formData && !isEmpty(formData)){
+            coursesList = coursesList.map(data=>{
+                if(data.id===formData.id){
+                    return formData
+                }else{
+                    return data
+                }
+            })
+            res.locals.status = 200;
+            res.locals.data = coursesList
+        }else{
+            return res
+                .status(400)
+                .json({
+                    type: 'Failed',
+                    message: "Data missing!"
+                })
+        }
+
         next();
     },
     responseHandler);
